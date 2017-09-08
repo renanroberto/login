@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <p>{{ msg }}</p>
+    <h1 class="md-title">{{ msg }}</h1>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: 'main',
   data () {
     return {
-      msg: 'Uma mensagem para debug...'
+      msg: 'Em construção...'
     }
   }
 }

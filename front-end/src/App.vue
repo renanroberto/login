@@ -16,12 +16,11 @@
           <md-button class="md-primary">Início</md-button>
         </router-link>
 
-        <!-- router.push -->
+        <!-- router.push('to') -->
         <md-button class="md-primary" @click="go('Login')">Login</md-button>
 
-        <router-link :to="{ name: 'Hello' }">
-          <md-button class="md-primary">Hello Vue</md-button>
-        </router-link>
+        <!-- Vue Material router-link -->
+        <router-link tag="md-button" class="md-primary" :to="{ name: 'Hello' }">Hello Vue</router-link>
       </md-toolbar>
     </md-theme>
     <router-view></router-view>
@@ -36,7 +35,7 @@ export default {
 
   data () {
     return {
-      title: 'Login System'
+      title: 'Sistema de Login'
     }
   },
 
