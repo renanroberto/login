@@ -2,21 +2,27 @@
   <main id="app" class="phone-viewport">
     <md-theme md-name="main">
       <md-toolbar>
-        <h1 class="md-title">{{ title }}</h1>
+        <!-- Menu Button  -->
+        <!-- <md-button>
+          <md-icon>menu</md-icon>
+        </md-button> -->
+
+        <h1 class="md-title" style="flex: 1">{{ title }}</h1>
       </md-toolbar>
-      <div class="link-bar">
+
+      <md-toolbar class="md-dense md-accent">
         <!-- router link -->
         <router-link :to="{ name: 'Main' }">
-          <md-button class="md-raised md-primary">Início</md-button>
+          <md-button class="md-primary">Início</md-button>
         </router-link>
 
         <!-- router.push -->
-        <md-button class="md-raised md-primary" @click="go('Login')">Login</md-button>
+        <md-button class="md-primary" @click="go('Login')">Login</md-button>
 
         <router-link :to="{ name: 'Hello' }">
-          <md-button class="md-raised md-primary">Hello Vue</md-button>
+          <md-button class="md-primary">Hello Vue</md-button>
         </router-link>
-      </div>
+      </md-toolbar>
     </md-theme>
     <router-view></router-view>
   </main>

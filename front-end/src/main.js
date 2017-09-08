@@ -13,7 +13,14 @@ Vue.use(VueMaterial)
 Vue.material.registerTheme({
   main: {
     primary: 'blue',
-    accent: 'red'
+    accent: 'black'
+  },
+  login: {
+    primary: 'blue',
+    accent: {
+      color: 'light-green',
+      hue: 'A700'
+    }
   }
 })
 

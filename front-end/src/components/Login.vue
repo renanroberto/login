@@ -1,20 +1,25 @@
 <template>
   <div id="login" class="center">
     <div class="login">
-      <form v-on:submit.prevent='onSubmit'>
-        <div>
-          Login: {{ email }} <span v-if="email && password">|</span> {{ password }}
-        </div>
-        <div>
-          <input type="email" name="email" v-model="email" placeholder="Email" required autocomplete autofocus>
-        </div>
-        <div>
-          <input type="password" name="password" v-model="password" placeholder="Senha" required>
-        </div>
-        <div>
-          <input type="submit" value="Entrar">
-        </div>
-      </form>
+      <md-theme md-name="login">
+        <form v-on:submit.prevent='onSubmit'>
+          <div class="md-title">Login</div>
+
+          <md-input-container>
+            <label>Email</label>
+            <md-input type="email" v-model="email" required></md-input>
+          </md-input-container>
+
+          <md-input-container md-has-password>
+            <label>Senha</label>
+            <md-input type="password" v-model="password" required></md-input>
+          </md-input-container>
+
+          <div style="text-align: right">
+            <md-button class="md-raised md-accent" @click="onSubmit">Login</md-button>
+          </div>
+        </form>
+      </md-theme>
     </div>
   </div>
 </template>
@@ -40,6 +45,7 @@ export default {
 
 <style scoped>
 .login{
+  min-width: 300px;
   background-color: white;
   padding: 10px;
   box-shadow: 0px 0px 5px lightgrey;
