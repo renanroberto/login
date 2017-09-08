@@ -14,7 +14,6 @@ mongoose.connect('mongodb://renan:renan@ds125994.mlab.com:25994/login', { useMon
 const User = require('./models/user');
 
 // Load routes
-const indexRoute = require('./routes/index-route');
 const loginRoute = require('./routes/login-route');
 const logoutRoute = require('./routes/logout-route');
 
@@ -29,17 +28,16 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// Resources
-app.use(express.static('resources'));
+// Static
+app.use(express.static('views'));
 
 // Use routes
-app.use('/', indexRoute);
 app.use('/login', loginRoute);
 app.use('/logout', logoutRoute);
 
 // Page not found
 app.use((req, res) => {
-  res.status(404).render('404');
+  res.redirect('/');
 });
 
 module.exports = app;

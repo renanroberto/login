@@ -6,7 +6,6 @@ const app = require('../src/app');
 const port = 3000;
 
 app.set('port', port);
-app.set('view engine', 'ejs');
 
 const server = http.createServer(app);
 
