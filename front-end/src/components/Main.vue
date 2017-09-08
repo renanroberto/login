@@ -9,7 +9,7 @@ export default {
   name: 'main',
   data () {
     return {
-      msg: 'Uma menssagem para debug...'
+      msg: 'Uma mensagem para debug...'
     }
   }
 }
