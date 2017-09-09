@@ -5,7 +5,7 @@ exports.restrict = (req, res, next) => {
     next();
   }
   else{
-    req.session.error = 'Access denied';
-    res.redirect('/');
+    req.session.error = 'Access denied'
+    res.status(403).send('Acesso negado')
   }
 }

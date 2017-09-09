@@ -32,12 +32,7 @@ app.use(session({
 app.use(express.static('views'));
 
 // Use routes
-app.use('/login', loginRoute);
+app.use('/checklogin', loginRoute);
 app.use('/logout', logoutRoute);
-
-// Page not found
-app.use((req, res) => {
-  res.redirect('/');
-});
 
 module.exports = app;

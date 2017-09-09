@@ -2,7 +2,7 @@
   <div id="login" class="center">
     <div class="login">
       <md-theme md-name="login">
-        <form v-on:submit.prevent='onSubmit'>
+        <form id="form-login" v-on:submit.prevent='onSubmit'>
           <div class="md-title">Login</div>
 
           <md-input-container>
@@ -16,7 +16,7 @@
           </md-input-container>
 
           <div style="text-align: right">
-            <md-button class="md-raised md-accent" @click="onSubmit">Login</md-button>
+            <md-button type="submit" class="md-raised md-accent">Login</md-button>
           </div>
         </form>
       </md-theme>
@@ -37,7 +37,17 @@ export default {
 
   methods: {
     onSubmit () {
-      console.log('Submit!')
+      this.axios
+      .post('/api/checklogin', {
+        email: this.email,
+        password: this.password
+      })
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch(error => {
+        console.log('Error:', error)
+      })
     }
   }
 }
