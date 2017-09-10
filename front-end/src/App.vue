@@ -6,9 +6,11 @@
       </md-toolbar>
 
       <md-toolbar class="md-dense md-accent">
-        <router-link tag="md-button" class="md-primary" :to="{ name: 'Main' }">Início</router-link>
-        <router-link tag="md-button" class="md-primary" :to="{ name: 'Login' }">Login</router-link>
+        <router-link tag="md-button" class="md-primary" :to="{ name: 'Main' }" exact>Início</router-link>
+        <router-link tag="md-button" class="md-primary" :to="{ name: 'Login' }" v-if="!online">Login</router-link>
         <router-link tag="md-button" class="md-primary" :to="{ name: 'Hello' }">Hello Vue</router-link>
+        <span style="flex: 1;"></span>
+        <md-button class="md-primary" @click="logout">Logout</md-button>
       </md-toolbar>
     </md-theme>
     <router-view></router-view>
@@ -16,12 +18,28 @@
 </template>
 
 <script>
+import router from './router'
+
 export default {
   name: 'app',
 
   data () {
     return {
-      title: 'Sistema de Login'
+      title: 'Sistema de Login',
+      online: false
+    }
+  },
+
+  methods: {
+    logout () {
+      this.axios
+      .get('/api/logout')
+      .then(() => {
+        alert('Volte sempre!')
+      })
+      .then(() => {
+        router.push({ name: 'Login' })
+      })
     }
   }
 }
@@ -36,9 +54,5 @@ export default {
 
   justify-content: center;
   align-items: center;
-}
-.link-bar{
-  text-align: center;
-  background-color: lightgrey;
 }
 </style>

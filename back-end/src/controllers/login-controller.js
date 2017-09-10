@@ -4,14 +4,8 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 exports.get = (req, res) => {
-  if(req.session.user){
-    res.status(200).send(req.session.user);
-  }
-  else{
-    res.status(403).send({
-      message: "Acesso Negado"
-    })
-  }
+  if (req.session.user) res.status(200).send(req.session.user)
+  else res.status(403).send('Acesso negado')
 }
 
 exports.post = (req, res) => {

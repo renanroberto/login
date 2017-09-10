@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import router from '../router'
+
 export default {
   name: 'login',
 
@@ -43,7 +45,9 @@ export default {
         password: this.password
       })
       .then(res => {
-        console.log(res.data)
+        if (res.data.auth) {
+          router.push({ name: 'Main' })
+        }
       })
       .catch(error => {
         console.log('Error:', error)

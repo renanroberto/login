@@ -12,7 +12,7 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 
-console.log('\x1B[2J\x1B[0f'); //clear console
+//console.log('\x1B[2J\x1B[0f'); //clear console
 console.log("Server iniciado na porta " + port);
 console.log('\n');
 

@@ -1,7 +1,6 @@
 <template>
-  <div class="text-center">
-    <md-button @click="check">Check</md-button>
-    <md-button @click="logout">Logout</md-button>
+  <div class="welcome">
+    <h2 class="md-title">Olá {{ user }}, seja bem vindo!</h2>
   </div>
 </template>
 
@@ -11,31 +10,34 @@ export default {
 
   data () {
     return {
-      user: ''
+      user: '',
+      email: ''
     }
   },
 
   methods: {
-    check () {
+    userInfo () {
       this.axios
       .get('/api/checklogin')
       .then(res => {
-        console.log(res.data)
+        this.user = res.data.name
+        this.email = res.data.email
       })
-      .catch(error => {
-        console.log('Error:', error)
-      })
-    },
-
-    logout () {
-      this.axios.get('/api/logout')
     }
+  },
+
+  beforeMount () {
+    this.userInfo()
   }
 }
 </script>
 
 <style scoped>
-  .text-center{
-    text-align: center;
-  }
+.welcome{
+  display: flex;
+  width: 100vw;
+
+  justify-content: center;
+  align-items: center;
+}
 </style>
