@@ -21,7 +21,7 @@ exports.post = (req, res) => {
           }
 
           // Console message
-          console.log(req.connection.remoteAddress + " has connected as " + user.name);
+          // console.log(req.connection.remoteAddress + " has connected as " + user.name);
 
           res.status(200).send({
             auth: true,

@@ -39,6 +39,7 @@ export default {
 
   methods: {
     onSubmit () {
+      console.log('submit') // debug
       this.axios
       .post('/api/checklogin', {
         email: this.email,

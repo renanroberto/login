@@ -7,7 +7,8 @@
     "login": "server.js"
   },
   "scripts": {
-    "start": "nodemon ./bin/server.js"
+    "start": "node ./bin/server.js",
+    "test": "nodemon ./bin/server.js"
   },
   "repository": {
     "type": "git",

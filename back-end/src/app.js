@@ -32,7 +32,7 @@ app.use(session({
 app.use(express.static('views'));
 
 // Use routes
-app.use('/checklogin', loginRoute);
-app.use('/logout', logoutRoute);
+app.use('/api/checklogin', loginRoute);
+app.use('/api/logout', logoutRoute);
 
 module.exports = app;
