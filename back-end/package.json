@@ -23,7 +23,7 @@
     "nodejs"
   ],
   "author": "Renan Roberto <renanroberto1@gmail.com>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/renanroberto/login/issues"
   },
