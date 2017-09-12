@@ -3,7 +3,7 @@
 const http = require('http');
 const app = require('../src/app');
 
-const port = 3000;
+const port = 5000;
 
 app.set('port', port);
 
@@ -14,7 +14,6 @@ server.on('error', onError);
 
 //console.log('\x1B[2J\x1B[0f'); //clear console
 console.log("Server iniciado na porta " + port);
-console.log('\n');
 
 function onError(error){
   if(error.syscall !== 'listen') throw error;

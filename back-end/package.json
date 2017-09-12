@@ -2,7 +2,7 @@
   "name": "login",
   "version": "1.0.0",
   "description": "A login system using VueJS + NodeJS",
-  "main": "views/index.ejs",
+  "main": "views/index.html",
   "bin": {
     "login": "server.js"
   },
