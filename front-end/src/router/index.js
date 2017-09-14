@@ -24,7 +24,6 @@ function restrict (to, from, next) {
     next()
   })
   .catch(() => {
-    alert('Você não está logado')
     next('/login')
   })
 }

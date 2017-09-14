@@ -5,7 +5,15 @@
         <h1 class="md-title" style="flex: 1">{{ title }}</h1>
       </md-toolbar>
 
-      <md-toolbar class="md-dense md-accent">
+      <md-tabs class="md-accent" @change="changeRoute">
+        <md-tab id="main" md-label="Início" :md-active="path === '/'" :md-disabled="!online"></md-tab>
+        <md-tab id="hello" md-label="Hello" :md-active="path === '/hello'"></md-tab>
+
+        <md-tab v-if="!online" id="login" md-label="Login" :md-active="path === '/login'"></md-tab>
+        <md-tab v-if="online" id="logout" md-label="Logout"></md-tab>
+      </md-tabs>
+
+      <!-- <md-toolbar class="md-dense md-accent">
         <router-link tag="md-button" class="md-primary" :to="{ name: 'Main' }" exact>Início</router-link>
         <router-link tag="md-button" class="md-primary" :to="{ name: 'Login' }">Login</router-link>
         <router-link tag="md-button" class="md-primary" :to="{ name: 'Hello' }">Hello</router-link>
@@ -13,7 +21,7 @@
         <span style="flex: 1"></span>
 
         <md-button class="md-primary" @click="logout">Logout</md-button>
-      </md-toolbar>
+      </md-toolbar> -->
     </md-theme>
     <router-view></router-view>
   </main>
@@ -27,11 +35,27 @@ export default {
 
   data () {
     return {
-      title: 'Sistema de Login'
+      title: 'Sistema de Login',
+      path: router.currentRoute.path,
+      online: false
     }
   },
 
   methods: {
+    changeRoute (tab) {
+      switch (tab) {
+        case 0:
+          router.push({ name: 'Main' })
+          break
+        case 1:
+          router.push({ name: 'Hello' })
+          break
+        case 2:
+          if (!this.online) router.push({ name: 'Login' })
+          else this.logout()
+          break
+      }
+    },
     logout () {
       this.axios
       .get('/api/logout')
