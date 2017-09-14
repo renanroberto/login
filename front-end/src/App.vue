@@ -5,9 +5,15 @@
         <h1 class="md-title" style="flex: 1">{{ title }}</h1>
       </md-toolbar>
 
-      <md-tabs class="md-accent">
-        <md-tab md-label="Início">
-      </md-tabs>
+      <md-toolbar class="md-dense md-accent">
+        <router-link tag="md-button" class="md-primary" :to="{ name: 'Main' }" exact>Início</router-link>
+        <router-link tag="md-button" class="md-primary" :to="{ name: 'Login' }">Login</router-link>
+        <router-link tag="md-button" class="md-primary" :to="{ name: 'Hello' }">Hello</router-link>
+
+        <span style="flex: 1"></span>
+
+        <md-button class="md-primary" @click="logout">Logout</md-button>
+      </md-toolbar>
     </md-theme>
     <router-view></router-view>
   </main>
