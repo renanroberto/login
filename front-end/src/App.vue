@@ -5,13 +5,9 @@
         <h1 class="md-title" style="flex: 1">{{ title }}</h1>
       </md-toolbar>
 
-      <md-toolbar class="md-dense md-accent">
-        <router-link tag="md-button" class="md-primary" :to="{ name: 'Main' }" exact>Início</router-link>
-        <router-link tag="md-button" class="md-primary" :to="{ name: 'Login' }" v-if="!online">Login</router-link>
-        <router-link tag="md-button" class="md-primary" :to="{ name: 'Hello' }">Hello Vue</router-link>
-        <span style="flex: 1;"></span>
-        <md-button class="md-primary" @click="logout">Logout</md-button>
-      </md-toolbar>
+      <md-tabs class="md-accent">
+        <md-tab md-label="Início">
+      </md-tabs>
     </md-theme>
     <router-view></router-view>
   </main>
@@ -25,8 +21,7 @@ export default {
 
   data () {
     return {
-      title: 'Sistema de Login',
-      online: false
+      title: 'Sistema de Login'
     }
   },
 
