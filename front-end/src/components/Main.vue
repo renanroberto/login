@@ -18,7 +18,7 @@ export default {
   methods: {
     userInfo () {
       this.axios
-      .get('/api/checklogin')
+      .get('/api/login')
       .then(res => {
         this.user = res.data.name
         this.email = res.data.email

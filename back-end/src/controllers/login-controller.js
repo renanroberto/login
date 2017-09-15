@@ -20,12 +20,8 @@ exports.post = (req, res) => {
             email: user.email
           }
 
-          // Console message
-          // console.log(req.connection.remoteAddress + " has connected as " + user.name);
-
           res.status(200).send({
             auth: true,
-            error: null,
             message: "Login realizado com sucesso!",
             user: user.name,
             email: user.email

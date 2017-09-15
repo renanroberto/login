@@ -10,20 +10,8 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/', name: 'Main', component: Main, beforeEnter: restrict },
+    { path: '/', name: 'Main', component: Main },
     { path: '/login', name: 'Login', component: Login },
     { path: '/hello', name: 'Hello', component: Hello }
-  ],
-  linkActiveClass: 'md-raised'
+  ]
 })
-
-function restrict (to, from, next) {
-  Vue.axios
-  .get('/api/checklogin')
-  .then(res => {
-    next()
-  })
-  .catch(() => {
-    next('/login')
-  })
-}

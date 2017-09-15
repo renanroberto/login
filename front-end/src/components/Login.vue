@@ -25,8 +25,6 @@
 </template>
 
 <script>
-import router from '../router'
-
 export default {
   name: 'login',
 
@@ -39,15 +37,17 @@ export default {
 
   methods: {
     onSubmit () {
-      console.log('submit') // debug
+      // Debug
+      console.log('Submited: (' + this.email + ', ' + this.password + ')')
+
       this.axios
-      .post('/api/checklogin', {
+      .post('/api/login', {
         email: this.email,
         password: this.password
       })
       .then(res => {
         if (res.data.auth) {
-          router.push({ name: 'Main' })
+          console.log('Authenticated!')
         }
       })
       .catch(error => {

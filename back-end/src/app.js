@@ -8,8 +8,15 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-// Datavase connect
-mongoose.connect('mongodb://renan:renan@ds125994.mlab.com:25994/login', { useMongoClient: true });
+// Database connect
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://renan:renan@ds125994.mlab.com:25994/login', {
+  useMongoClient: true
+}).then(() => {
+  console.log('Connected!')
+}, err => {
+  console.log('Can\'t connect', err)
+})
 
 // Load models
 const User = require('./models/user');
@@ -39,7 +46,7 @@ app.use(history({
 app.use(views);
 
 // Use routes
-app.use('/api/checklogin', loginRoute);
+app.use('/api/login', loginRoute);
 app.use('/api/logout', logoutRoute);
 
 module.exports = app;
