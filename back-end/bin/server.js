@@ -13,7 +13,7 @@ server.listen(port);
 server.on('error', onError);
 
 //console.log('\x1B[2J\x1B[0f'); //clear console
-console.log("Server iniciado na porta " + port);
+console.log("Server started on port " + port);
 
 function onError(error){
   if(error.syscall !== 'listen') throw error;

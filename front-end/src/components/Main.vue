@@ -1,6 +1,6 @@
 <template>
   <div class="welcome">
-    <h2 class="md-title">Olá {{ user }}, seja bem vindo!</h2>
+    <h2 class="md-title">Olá {{ name }}, seja bem vindo!</h2>
   </div>
 </template>
 
@@ -8,27 +8,7 @@
 export default {
   name: 'main',
 
-  data () {
-    return {
-      user: '',
-      email: ''
-    }
-  },
-
-  methods: {
-    userInfo () {
-      this.axios
-      .get('/api/login')
-      .then(res => {
-        this.user = res.data.name
-        this.email = res.data.email
-      })
-    }
-  },
-
-  beforeMount () {
-    this.userInfo()
-  }
+  props: ['name', 'email']
 }
 </script>
 

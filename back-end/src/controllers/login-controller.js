@@ -4,8 +4,17 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 exports.get = (req, res) => {
-  if (req.session.user) res.status(200).send(req.session.user)
-  else res.status(403).send('Acesso negado')
+  if (req.session.user) {
+    res.status(200).send({
+      auth: true,
+      user: {
+        name: req.session.user.name,
+        email: req.session.user.email
+      }
+    })
+  } else {
+    res.status(403).send('Acesso negado')
+  }
 }
 
 exports.post = (req, res) => {
@@ -23,7 +32,7 @@ exports.post = (req, res) => {
           res.status(200).send({
             auth: true,
             message: "Login realizado com sucesso!",
-            user: user.name,
+            name: user.name,
             email: user.email
           });
         });

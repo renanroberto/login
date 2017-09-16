@@ -13,9 +13,9 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://renan:renan@ds125994.mlab.com:25994/login', {
   useMongoClient: true
 }).then(() => {
-  console.log('Connected!')
+  console.log('Database connected')
 }, err => {
-  console.log('Can\'t connect', err)
+  console.log('Can\'t connect on database', err)
 })
 
 // Load models

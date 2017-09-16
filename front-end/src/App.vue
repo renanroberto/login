@@ -3,21 +3,30 @@
     <md-theme md-name="main">
       <md-toolbar>
         <h1 class="md-title" style="flex: 1">{{ title }}</h1>
+        <h3 v-if="online">{{ user.name }}: {{ user.email }}</h3>
       </md-toolbar>
 
       <md-tabs class="md-accent">
-        <md-tab id="main" md-label="Início" :md-disabled="!online"><CcMain></CcMain></md-tab>
-        <md-tab id="hello" md-label="Hello"><CcHello></CcHello></md-tab>
-
-        <md-tab v-if="!online" id="login" md-label="Login" md-active><CcLogin></CcLogin></md-tab>
-        <md-tab v-if="online" id="logout" md-label="Logout">Aguarde...</md-tab>
+        <md-tab id="main" md-label="Início" :md-disabled="!online">
+          <CcMain :name="user.name"></CcMain>
+        </md-tab>
+        <md-tab id="hello" md-label="Hello">
+          <CcHello></CcHello>
+        </md-tab>
+        <!-- Login information -->
+        <md-tab v-if="!online" id="login" md-label="Login" md-active>
+          <CcLogin @auth="login"></CcLogin>
+        </md-tab>
+        <md-tab v-if="online" id="logout" md-label="Logout">
+          <md-button class="md-accent md-raised" @click="logout">Logout</md-button>
+        </md-tab>
       </md-tabs>
     </md-theme>
   </main>
 </template>
 
 <script>
-import router from './router'
+// import router from './router'
 
 import CcMain from './components/Main'
 import CcHello from './components/Hello'
@@ -33,21 +42,41 @@ export default {
   data () {
     return {
       title: 'Sistema de Login',
-      online: false
+      online: false,
+      user: { name: '', email: '' }
     }
   },
 
   methods: {
+    login ([name, email]) {
+      this.online = true
+      this.user.name = name
+      this.user.email = email
+    },
+
     logout () {
       this.axios
       .get('/api/logout')
       .then(() => {
-        alert('Volte sempre!')
+        this.online = false
+        this.user = {}
       })
-      .then(() => {
-        router.push({ name: 'Login' })
+      .catch(err => {
+        console.log('Error on logout', err)
       })
     }
+  },
+
+  beforeMount () {
+    this.axios
+    .get('/api/login')
+    .then(res => {
+      this.online = res.data.auth
+      this.user = res.data.user
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 }
 </script>

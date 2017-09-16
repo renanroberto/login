@@ -2,7 +2,7 @@
   <div id="login" class="center">
     <div class="login">
       <md-theme md-name="login">
-        <form id="form-login" v-on:submit.prevent='onSubmit'>
+        <form id="form-login" v-on:submit.prevent="onSubmit">
           <div class="md-title">Login</div>
 
           <md-input-container>
@@ -37,9 +37,6 @@ export default {
 
   methods: {
     onSubmit () {
-      // Debug
-      console.log('Submited: (' + this.email + ', ' + this.password + ')')
-
       this.axios
       .post('/api/login', {
         email: this.email,
@@ -47,11 +44,11 @@ export default {
       })
       .then(res => {
         if (res.data.auth) {
-          console.log('Authenticated!')
+          this.$emit('auth', [res.data.name, res.data.email])
         }
       })
       .catch(error => {
-        console.log('Error:', error)
+        console.log('Error on login', error)
       })
     }
   }
