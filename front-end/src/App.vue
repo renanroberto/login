@@ -3,7 +3,6 @@
     <md-theme md-name="main">
       <md-toolbar>
         <h1 class="md-title" style="flex: 1">{{ title }}</h1>
-        <h3 v-if="online">{{ user.name }}: {{ user.email }}</h3>
       </md-toolbar>
 
       <md-tabs class="md-accent">
@@ -75,7 +74,7 @@ export default {
       this.user = res.data.user
     })
     .catch(err => {
-      console.log(err)
+      console.log(err.message)
     })
   }
 }

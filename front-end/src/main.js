@@ -24,6 +24,20 @@ Vue.material.registerTheme({
     accent: {
       color: 'light-green',
       hue: 'A700'
+    },
+    warn: {
+      color: 'red',
+      hue: 'A700'
+    }
+  },
+  success: {
+    primary: {
+      color: 'light-green',
+      hue: 'A700'
+    },
+    accent: {
+      color: 'light-green',
+      hue: 'A700'
     }
   }
 })
