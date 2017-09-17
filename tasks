@@ -1,4 +1,3 @@
-Handle login fail
-Handle logout
-Manipule active tab (@change)
-Use ._debounce from lodash
+Cadastro (MongoDB)
+Chat (socket.io)
+Admin page (VueRouter)

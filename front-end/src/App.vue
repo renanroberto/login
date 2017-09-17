@@ -5,21 +5,30 @@
         <h1 class="md-title" style="flex: 1">{{ title }}</h1>
       </md-toolbar>
 
-      <md-tabs class="md-accent">
-        <md-tab id="main" md-label="Início" :md-disabled="!online">
+      <md-tabs class="md-accent" @change="t => tab = t">
+        <md-tab id="main" md-label="Início" :md-active="online" :md-disabled="!online">
           <CcMain :name="user.name"></CcMain>
         </md-tab>
         <md-tab id="hello" md-label="Hello">
           <CcHello></CcHello>
         </md-tab>
         <!-- Login information -->
-        <md-tab v-if="!online" id="login" md-label="Login" md-active>
+        <md-tab v-if="!online" id="login" md-label="Login" :md-active="!online">
           <CcLogin @auth="login"></CcLogin>
         </md-tab>
         <md-tab v-if="online" id="logout" md-label="Logout">
-          <md-button class="md-accent md-raised" @click="logout">Logout</md-button>
         </md-tab>
       </md-tabs>
+
+      <md-dialog ref="logoutMsg">
+        <md-dialog-title>{{ title }}</md-dialog-title>
+
+        <md-dialog-content>Que a Força esteja com você</md-dialog-content>
+
+        <md-dialog-actions>
+          <md-button class="md-accent" @click="logout">Ok</md-button>
+        </md-dialog-actions>
+      </md-dialog>
     </md-theme>
   </main>
 </template>
@@ -42,7 +51,8 @@ export default {
     return {
       title: 'Sistema de Login',
       online: false,
-      user: { name: '', email: '' }
+      user: { name: '', email: '' },
+      tab: 0
     }
   },
 
@@ -54,6 +64,7 @@ export default {
     },
 
     logout () {
+      this.closeDialog('logoutMsg')
       this.axios
       .get('/api/logout')
       .then(() => {
@@ -63,6 +74,22 @@ export default {
       .catch(err => {
         console.log('Error on logout', err)
       })
+    },
+
+    openDialog (ref) {
+      this.$refs[ref].open()
+    },
+
+    closeDialog (ref) {
+      this.$refs[ref].close()
+    }
+  },
+
+  watch: {
+    tab: function () {
+      if (this.online && this.tab === 2) {
+        this.openDialog('logoutMsg')
+      }
     }
   },
 
