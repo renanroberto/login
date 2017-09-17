@@ -24,11 +24,16 @@
         <md-tab id="hello" md-label="Hello">
           <CcHello></CcHello>
         </md-tab>
-        <!-- Login information -->
+
         <md-tab v-if="!online" id="login" md-label="Login" :md-active="!online">
           <CcLogin @auth="login"></CcLogin>
         </md-tab>
         <md-tab v-if="online" id="logout" md-label="Logout">
+          
+        </md-tab>
+
+        <md-tab v-if="!online" id="signup" md-label="Cadastre-se">
+          <CcSignup></CcSignup>
         </md-tab>
       </md-tabs>
 
@@ -51,12 +56,13 @@
 import CcMain from './components/Main'
 import CcHello from './components/Hello'
 import CcLogin from './components/Login'
+import CcSignup from './components/Signup'
 
 export default {
   name: 'app',
 
   components: {
-    CcMain, CcHello, CcLogin
+    CcMain, CcHello, CcLogin, CcSignup
   },
 
   data () {
@@ -128,7 +134,7 @@ export default {
   display: flex;
   width: 100vw;
 
-  padding-top: 100px;
+  margin-top: 100px;
 
   justify-content: center;
   align-items: center;
