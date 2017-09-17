@@ -27,20 +27,18 @@
             <span class="md-error">A senha precisa ter 8 dígitos ou mais</span>
           </md-input-container>
 
-          <div style="color: red" v-show="loginFail">
-            <md-icon>error_outline</md-icon>
-            <small>Login ou senha estão incorretos</small>
-          </div>
-
           <md-layout md-gutter>
-            <md-layout>
-              <md-spinner v-show="searching" md-indeterminate></md-spinner>
+            <md-layout :md-flex="65">
+              <md-spinner v-if="searching" :md-size="40" :md-stroke="2" md-indeterminate></md-spinner>
+              <span v-else v-show="loginFail" class="errorMsg">
+                <md-icon>error_outline</md-icon>
+                <small>&nbsp; {{ failMsg }}</small>
+              </span>
             </md-layout>
-            <md-layout md-flex="33" md-flex-offset="33">
+            <md-layout :md-flex="25">
               <md-button type="submit" class="md-raised md-accent">Login</md-button>
             </md-layout>
           </md-layout>
-          <md-progress v-show="false" md-indeterminate></md-progress>
         </form>
       </md-theme>
     </div>
@@ -62,6 +60,7 @@ export default {
       passInfo: '',
 
       loginFail: false,
+      failMsg: '',
 
       searching: false
     }
@@ -81,7 +80,7 @@ export default {
         }
       })
       .catch(err => {
-        console.log(err.message)
+        this.failMsg = err.response.data.message
         this.loginFail = true
       })
       .then(() => {
@@ -121,10 +120,16 @@ export default {
 </script>
 
 <style scoped>
-.login{
+.login {
   min-width: 300px;
   background-color: white;
   padding: 10px;
   box-shadow: 0px 0px 5px lightgrey;
+}
+
+.errorMsg {
+  display: flex;
+  align-items: center;
+  color: red;
 }
 </style>

@@ -2,8 +2,20 @@
   <main id="app" class="phone-viewport">
     <md-theme md-name="main">
       <md-toolbar>
+        <!-- <md-button class="md-icon-button" @click="toggleLeftSidenav">
+          <md-icon>menu</md-icon>
+        </md-button> -->
+
         <h1 class="md-title" style="flex: 1">{{ title }}</h1>
       </md-toolbar>
+
+      <md-sidenav class="md-left" ref="leftSidenav">
+        <md-toolbar md-class="dense">
+            <h3 class="md-title">Sidenav content</h3>
+        </md-toolbar>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate esse necessitatibus beatae nobis, deserunt ut est fugit, tempora deleniti, eligendi commodi doloribus. Nemo, assumenda possimus, impedit inventore perferendis iusto!</p>
+      </md-sidenav>
 
       <md-tabs class="md-accent" @change="t => tab = t">
         <md-tab id="main" md-label="Início" :md-active="online" :md-disabled="!online">
@@ -23,7 +35,7 @@
       <md-dialog ref="logoutMsg">
         <md-dialog-title>{{ title }}</md-dialog-title>
 
-        <md-dialog-content>Que a Força esteja com você</md-dialog-content>
+        <md-dialog-content><i>may the force be with you</i></md-dialog-content>
 
         <md-dialog-actions>
           <md-button class="md-accent" @click="logout">Ok</md-button>
@@ -76,6 +88,10 @@ export default {
       })
     },
 
+    toggleLeftSidenav () {
+      this.$refs.leftSidenav.toggle()
+    },
+
     openDialog (ref) {
       this.$refs[ref].open()
     },
@@ -101,7 +117,7 @@ export default {
       this.user = res.data.user
     })
     .catch(err => {
-      console.log(err.message)
+      console.log(err.response.data.msg)
     })
   }
 }

@@ -13,7 +13,10 @@ exports.get = (req, res) => {
       }
     })
   } else {
-    res.status(403).send('Acesso negado')
+    res.status(403).send({
+      auth: false,
+      msg: "Usuário não está logado"
+    })
   }
 }
 
@@ -40,7 +43,7 @@ exports.post = (req, res) => {
       else{
         res.status(403).send({
           auth: false,
-          error: 'pass',
+          type: 'password',
           message: "Senha incorreta"
         });
       }
@@ -48,7 +51,7 @@ exports.post = (req, res) => {
     .catch(err => {
       res.status(403).send({
         auth: false,
-        error: 'email',
+        type: 'email',
         message: "Email não cadastrado"
       });
     });
