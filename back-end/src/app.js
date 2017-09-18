@@ -24,6 +24,7 @@ const users = require('./models/users');
 // Load routes
 const loginRoute = require('./routes/login-route');
 const logoutRoute = require('./routes/logout-route');
+const signupRoute = require('./routes/signup-route');
 
 // Body Parser
 app.use(bodyParser.json());
@@ -48,5 +49,6 @@ app.use(views);
 // Use routes
 app.use('/api/login', loginRoute);
 app.use('/api/logout', logoutRoute);
+app.use('/api/signup', signupRoute);
 
 module.exports = app;
