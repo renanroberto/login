@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const users = mongoose.model('users');
 
 exports.get = (req, res) => {
   if (req.session.user) {
@@ -23,7 +23,7 @@ exports.get = (req, res) => {
 exports.post = (req, res) => {
   let auth = false;
 
-  User.findOne({ email: req.body.email })
+  users.findOne({ email: req.body.email })
     .then(user => {
       if(user.password == req.body.password){
         req.session.regenerate(function(){

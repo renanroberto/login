@@ -29,7 +29,7 @@
 
           <md-layout md-gutter>
             <md-layout :md-flex="65">
-              <md-spinner v-if="searching" :md-size="40" :md-stroke="2" md-indeterminate></md-spinner>
+              <md-spinner v-if="loading" :md-size="40" :md-stroke="2" md-indeterminate></md-spinner>
               <span v-else v-show="loginFail" class="errorMsg">
                 <md-icon>error_outline</md-icon>
                 <small>&nbsp; {{ failMsg }}</small>
@@ -62,13 +62,13 @@ export default {
       loginFail: false,
       failMsg: '',
 
-      searching: false
+      loading: false
     }
   },
 
   methods: {
     onSubmit () {
-      this.searching = true
+      this.loading = true
       this.axios
       .post('/api/login', {
         email: this.email,
@@ -84,7 +84,7 @@ export default {
         this.loginFail = true
       })
       .then(() => {
-        this.searching = false
+        this.loading = false
       })
     },
 

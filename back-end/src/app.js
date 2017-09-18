@@ -19,7 +19,7 @@ mongoose.connect('mongodb://renan:renan@ds125994.mlab.com:25994/login', {
 })
 
 // Load models
-const User = require('./models/user');
+const users = require('./models/users');
 
 // Load routes
 const loginRoute = require('./routes/login-route');

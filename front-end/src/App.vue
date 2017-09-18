@@ -17,7 +17,7 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate esse necessitatibus beatae nobis, deserunt ut est fugit, tempora deleniti, eligendi commodi doloribus. Nemo, assumenda possimus, impedit inventore perferendis iusto!</p>
       </md-sidenav>
 
-      <md-tabs class="md-accent" @change="t => tab = t">
+      <md-tabs class="md-accent" style="overflow: hidden" @change="t => tab = t">
         <md-tab id="main" md-label="Início" :md-active="online" :md-disabled="!online">
           <CcMain :name="user.name"></CcMain>
         </md-tab>
@@ -28,9 +28,7 @@
         <md-tab v-if="!online" id="login" md-label="Login" :md-active="!online">
           <CcLogin @auth="login"></CcLogin>
         </md-tab>
-        <md-tab v-if="online" id="logout" md-label="Logout">
-          
-        </md-tab>
+        <md-tab v-if="online" id="logout" md-label="Logout"></md-tab>
 
         <md-tab v-if="!online" id="signup" md-label="Cadastre-se">
           <CcSignup></CcSignup>
