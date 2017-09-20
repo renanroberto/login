@@ -2,9 +2,9 @@
   <div id="login" class="center">
     <div class="login">
       <md-theme md-name="login">
+        <div class="md-title">Login</div>
+        
         <form id="form-login" v-on:submit.prevent="onSubmit">
-          <div class="md-title">Login</div>
-
           <md-input-container :class="emailInfo === 'invalid' ? 'md-input-invalid' : ''" :md-theme="emailInfo === 'invalid' ?  'warning' : 'success'">
             <label>Email</label>
             <md-input type="email" v-model="email" required></md-input>

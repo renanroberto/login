@@ -10,4 +10,7 @@ exports.post = (req, res) => {
   .then(() => {
     res.status(201).send({ message: "Usuário cadastrado com sucesso" })
   })
+  .catch(() => {
+    res.status(400).send({ message: "Falha ao cadastrar usuário" })
+  })
 }
