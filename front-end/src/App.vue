@@ -134,6 +134,8 @@ export default {
 
   margin-top: 100px;
 
+  flex-direction: column;
+
   justify-content: center;
   align-items: center;
 }
