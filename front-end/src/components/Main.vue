@@ -54,7 +54,8 @@ export default {
     min-width: 100%;
     padding: 10px;
     background-color: #B0BEC5;
-    border: 1px solid #90A4AE;
+    /*border: 1px solid #90A4AE;*/
+    box-shadow: 0px 0px 10px black;
   }
 }
 @media only screen and (min-width: 500px) {
@@ -62,7 +63,8 @@ export default {
     min-width: 50vw;
     padding: 10px;
     background-color: #B0BEC5;
-    border: 1px solid #90A4AE;
+    /*border: 1px solid #90A4AE;*/
+    box-shadow: 0px 0px 10px black;
   }
 }
 
