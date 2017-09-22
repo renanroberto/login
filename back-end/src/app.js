@@ -42,7 +42,7 @@ const views = express.static('views')
 app.use(views)
 app.use(history({
   disableDotRule: true,
-  verbose: true
+  verbose: false
 }));
 app.use(views)
 
