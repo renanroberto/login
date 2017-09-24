@@ -13,8 +13,16 @@ const io = require('socket.io')(server);
 server.listen(port);
 server.on('error', onError);
 
-io.on('connection', function (client) {
-  console.log('user connected');
+io.on('connection', client => {
+  console.log('user connected')
+
+  client.on('disconnect', () => {
+    console.log('user disconnected')
+  })
+
+  client.on('chatMessage', msg => {
+    io.emit('chatMessage', msg)
+  })
 })
 
 //console.log('\x1B[2J\x1B[0f'); //clear console

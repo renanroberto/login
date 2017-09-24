@@ -4,19 +4,18 @@
 
     <div class="chat-container">
       <div class="chat-view">
-        <div class="chat-message">
-          <div>Some message...</div>
-        </div>
-        <div class="chat-message">
-          <div>Some message big message to debug...</div>
+        <div>
+          <div class="chat-message" v-for="msg in messages">
+            <div> <b>{{ msg.sender }}:</b> {{ msg.text }} </div>
+          </div>
         </div>
       </div>
 
-      <form id="chat-login" @submit.prevent>
+      <form id="chat-login" @submit.prevent="onSubmit">
         <div class="chat-input">
           <md-input-container md-inline>
             <label>Envie uma mensagem...</label>
-            <md-input type="text"></md-input>
+            <md-input id="msgField" type="text" v-model="clientMsg"></md-input>
           </md-input-container>
 
           <span style="align-self: center">
@@ -36,7 +35,34 @@
 export default {
   name: 'main',
 
-  props: ['name', 'email']
+  data () {
+    return {
+      clientMsg: '',
+      messages: [
+        { sender: 'Admin', text: 'Olá!' },
+        { sender: 'Admin', text: 'Sejam bem viados!' }
+      ]
+    }
+  },
+
+  props: ['name', 'email'],
+
+  methods: {
+    onSubmit () {
+      let client = this.$socket
+
+      client.emit('chatMessage', { sender: this.name, text: this.clientMsg })
+
+      document.getElementById('msgField').value = ''
+      this.clientMsg = ''
+    }
+  },
+
+  sockets: {
+    chatMessage: function (msg) {
+      this.messages.push(msg)
+    }
+  }
 }
 </script>
 
@@ -51,30 +77,29 @@ export default {
 
 @media only screen and (max-width: 500px) {
   .chat-container {
-    min-width: 100%;
+    width: 100%;
     padding: 10px;
     background-color: #B0BEC5;
-    /*border: 1px solid #90A4AE;*/
     box-shadow: 0px 0px 10px black;
   }
 }
 @media only screen and (min-width: 500px) {
   .chat-container {
-    min-width: 50vw;
+    width: 50vw;
     padding: 10px;
     background-color: #B0BEC5;
-    /*border: 1px solid #90A4AE;*/
     box-shadow: 0px 0px 10px black;
   }
 }
 
 .chat-view {
   display: flex;
-  min-height: 25vh;
+  height: 40vh;
 
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: flex-start;
 
+  overflow-y: auto;
 
   padding: 10px;
   box-shadow: 0 0 5px grey;
