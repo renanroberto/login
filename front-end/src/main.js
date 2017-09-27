@@ -6,9 +6,6 @@ import 'vue-material/dist/vue-material.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-// import lodash from 'lodash'
-// import VueLodash from 'vue-lodash/dist/vue-lodash.min'
-
 import io from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io'
 
@@ -19,8 +16,7 @@ Vue.config.productionTip = false
 
 Vue.use(VueMaterial)
 Vue.use(VueAxios, axios)
-Vue.use(VueSocketIO, io('localhost:5000'))
-// Vue.use(VueLodash, lodash)
+Vue.use(VueSocketIO, process.env.NODE_ENV === 'development' ? io('localhost:5000') : io())
 
 Vue.material.registerTheme({
   main: {
