@@ -21,7 +21,7 @@ io.on('connection', client => {
   })
 
   client.on('chatMessage', msg => {
-    io.emit('chatMessage', msg)
+    client.broadcast.emit('chatMessage', msg)
   })
 })
 

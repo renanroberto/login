@@ -5,8 +5,13 @@
     <div class="chat-container">
       <div class="chat-view">
         <div>
-          <div class="chat-message" v-for="msg in messages">
-            <div> <b>{{ msg.sender }}:</b> {{ msg.text }} </div>
+          <div v-for="msg in messages">
+            <div :class="msg.sender == name ? 'self-msg' : 'chat-message'">
+              <div>
+                <b>{{ msg.sender }}</b><br>
+                {{ msg.text }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -39,8 +44,8 @@ export default {
     return {
       clientMsg: '',
       messages: [
-        { sender: 'Admin', text: 'Olá!' },
-        { sender: 'Admin', text: 'Sejam bem viados!' }
+        { sender: 'admin', text: 'Olá!' },
+        { sender: 'admin', text: 'Sejam bem viados!' }
       ]
     }
   },
@@ -52,6 +57,7 @@ export default {
       let client = this.$socket
 
       client.emit('chatMessage', { sender: this.name, text: this.clientMsg })
+      this.messages.push({ sender: this.name, text: this.clientMsg })
 
       document.getElementById('msgField').value = ''
       this.clientMsg = ''
@@ -119,6 +125,7 @@ export default {
 
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  border-bottom-left-radius: 0px;
   border-bottom-right-radius: 10px;
 
   background-color: lightblue;
@@ -126,5 +133,28 @@ export default {
 
 .chat-input {
   display: flex;
+}
+
+.self-msg {
+  margin: 3px;
+  text-align: right;
+}
+
+.self-msg div {
+  display: inline-block;
+
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 0px;
+
+  text-align: left;
+
+  background-color: lightgreen;
 }
 </style>
