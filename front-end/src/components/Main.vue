@@ -20,7 +20,7 @@
         <div class="chat-input">
           <md-input-container md-inline>
             <label>Envie uma mensagem...</label>
-            <md-input id="msgField" type="text" v-model="clientMsg"></md-input>
+            <md-input id="msgField" type="text" v-model="clientMsg" :debounce='0'></md-input>
           </md-input-container>
 
           <span style="align-self: center">
