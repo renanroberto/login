@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 app.set('port', port);
 
 const server = http.createServer(app);
-const io = require('socket.io')(server);
+const io = require('socket.io').listen(server);
 
 server.listen(port);
 server.on('error', onError);

@@ -11,7 +11,6 @@ import VueAxios from 'vue-axios'
 
 import io from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io'
-export const SocketInstance = io('http://localhost:5000')
 
 import App from './App'
 import router from './router'
@@ -20,7 +19,7 @@ Vue.config.productionTip = false
 
 Vue.use(VueMaterial)
 Vue.use(VueAxios, axios)
-Vue.use(VueSocketIO, SocketInstance)
+Vue.use(VueSocketIO, io())
 // Vue.use(VueLodash, lodash)
 
 Vue.material.registerTheme({
