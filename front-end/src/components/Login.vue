@@ -3,11 +3,11 @@
     <div class="login">
       <md-theme md-name="login">
         <div class="md-title">Login</div>
-        
+
         <form id="form-login" v-on:submit.prevent="onSubmit">
           <md-input-container :class="emailInfo === 'invalid' ? 'md-input-invalid' : ''" :md-theme="emailInfo === 'invalid' ?  'warning' : 'success'">
             <label>Email</label>
-            <md-input type="email" v-model="email" required></md-input>
+            <md-input type="email" v-model="email" :debounce='0' required></md-input>
 
             <md-icon v-if="emailInfo === 'valid'" class="md-accent">check_circle</md-icon>
             <md-icon v-if="emailInfo === 'invalid'" class="md-warn">close</md-icon>
@@ -18,7 +18,7 @@
 
           <md-input-container :class="passInfo === 'invalid' ? 'md-input-invalid' : ''" :md-theme="passInfo === 'invalid' ?  'warning' : 'success'">
             <label>Senha</label>
-            <md-input type="password" v-model="password" required></md-input>
+            <md-input type="password" v-model="password" :debounce='0' required></md-input>
 
             <md-icon v-if="passInfo === 'valid'" class="md-accent">check_circle</md-icon>
             <md-icon v-if="passInfo === 'invalid'" class="md-warn">close</md-icon>

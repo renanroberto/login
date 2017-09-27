@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 
 Vue.use(VueMaterial)
 Vue.use(VueAxios, axios)
-Vue.use(VueSocketIO, io())
+Vue.use(VueSocketIO, io('localhost:5000'))
 // Vue.use(VueLodash, lodash)
 
 Vue.material.registerTheme({
